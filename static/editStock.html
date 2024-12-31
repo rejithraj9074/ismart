@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
+	<meta name="author" content="AdminKit">
+	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
+
+	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
+
+	<title>Inventory | iSmart</title>
+
+	<link href="css/app.css" rel="stylesheet">
+	<link href="css/customStyle.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" media="all"
+		 href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/smoothness/jquery-ui.css"    />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script type = "text/javascript" 
+         src = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js">
+      </script>
+	<script src="../assets/js/main.js"></script>
+	<script src="../assets/js/editStock.js"></script>
+</head>
+
+<body>
+	<div class="wrapper">
+		<nav id="sidebar" class="sidebar">
+			<div class="sidebar-content js-simplebar">
+				<a class="sidebar-brand" href="index.html">
+          <span class="align-middle">iSmart</span>
+        </a>
+
+		<ul class="sidebar-nav">
+			<li class="sidebar-header">
+				
+			</li>
+			<li class="sidebar-item">
+				<a class="sidebar-link" href="Home.html">
+					<i class="align-middle" data-feather="book"></i> <span class="align-middle">Home</span>
+				</a>
+			</li>
+			<li class="sidebar-item hide" id="mnu_dashboard">
+				<a class="sidebar-link" href="Dashboard.html">
+					<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
+				</a>
+			</li>
+
+			<li class="sidebar-item hide" id="mnu_settings">
+				<a class="sidebar-link" href="settings.html">
+					<i class="align-middle" data-feather="settings"></i> <span class="align-middle">Settings</span>
+				</a>
+			</li>
+
+			<li class="sidebar-item hide" id="mnu_invoice">
+				<a class="sidebar-link" href="listInvoice.html">
+					<i class="align-middle" data-feather="credit-card"></i> <span class="align-middle">Invoice</span>
+				</a>
+			</li>
+
+			<li class="sidebar-item active hide" id="mnu_stock">
+				<a class="sidebar-link" href="stock.html">
+					<i class="align-middle" data-feather="shopping-cart"></i> <span class="align-middle">Inventory</span>
+				</a>
+			</li>			
+		</ul>
+			</div>
+		</nav>
+
+		<div class="main">
+			<nav class="navbar navbar-expand navbar-light navbar-bg">
+				<a class="sidebar-toggle d-flex">
+          <i class="hamburger align-self-center"></i>
+        </a>
+
+		<div class="navbar-collapse collapse">
+			<ul class="navbar-nav navbar-align">
+				<li class="nav-item dropdown">
+					<a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown" data-toggle="dropdown">
+						<div class="position-relative">
+							<i class="align-middle" data-feather="bell"></i>
+							<span class="indicator" id="alertCount"></span>
+						</div>
+					</a>
+					<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right py-0 scrollbar" id="style-1" aria-labelledby="alertsDropdown">
+						<div class="list-group force-overflow" id="alertList">
+
+						</div>
+						<div class="dropdown-menu-footer" id="alertsFooter">
+							<p class="text-muted">No notificatios to display</p>
+						</div>
+					</div>
+				</li>
+				<li class="nav-item dropdown">
+					<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right py-0" aria-labelledby="alertsDropdown">
+						<div class="dropdown-menu-footer">
+							<p class="text-muted">No notificatios to display</p>
+						</div>
+					</div>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-toggle="dropdown">
+						<i class="align-middle" data-feather="settings"></i>
+					</a>
+
+					<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-toggle="dropdown">
+						<img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded mr-1" alt="Charles Hall" /> <span class="text-dark" id="lbl_profile"></span>
+					</a>
+					<div class="dropdown-menu dropdown-menu-right">
+						<!-- <a class="dropdown-item" href="pages-profile.html"><i class="align-middle mr-1" data-feather="user"></i> Profile</a> -->
+						<a id="mnu_profileSettings" class="dropdown-item hide" href="settings.html"><i class="align-middle mr-1" data-feather="settings"></i> Settings</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="../Login.html">Log out</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+			</nav>
+
+			<main class="content">
+				<div class="container-fluid p-0">
+
+					<h1 class="h3 mb-3">Edit product</h1>
+					<div class="alert alert-success alert-dismissible hide" role="alert" id="alert_featureUpdate">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+						<div class="alert-message" id="alert_message">
+							
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12 col-xl-12">
+							<div class="card">
+								<div class="card-header">
+									
+								</div>
+								<div class="card-body">
+									
+										<div class="row">
+											<div class="mb-3 col-md-8">
+												<label class="form-label" for="inputEmail4">Name</label>
+												<input  onkeyup="hideError('#lbl_Error_Name')" autocomplete="off" type="text" class="form-control" id="txt_ProductName" placeholder="Product name">
+												<p id="lbl_Error_Name" class="error hide">*Please enter a name</p>
+											</div>
+										</div>
+										<div class="row">
+											<div class="mb-3 col-md-4">
+												<label class="form-label" for="inputState">Category</label>
+												<select onchange="subcategory()" id="lst_ProductCategory" class="form-control">
+													<option selected="">Choose...</option>
+													<option>...</option>
+												</select>
+												<p id="lbl_Error_Category" class="error hide">*Please select a category</p>
+											</div>
+											<div class="mb-3 col-md-4">
+												<label class="form-label" for="inputState">Sub category</label>
+												<select  onchange="hideError('#lbl_Error_Subcategory')" id="lst_ProductSubcategory" class="form-control">
+													<option selected="">Choose...</option>
+												</select>
+												<p id="lbl_Error_Subcategory" class="error hide">*Please select a subcategory</p>
+											</div>
+											<div class="mb-3 col-md-2">
+												<label class="form-label" for="inputEmail4">Quantity type</label>
+												<select id="lst_ProductQuantityType" class="form-control">
+													<option selected="">Nos</option>
+													<option>...</option>
+												</select>
+											</div>
+										</div>
+										
+										<div class="row">
+											
+											<div class="mb-3 col-md-12" style="text-align:right;">
+												<button id="btnAddStock" class="btn btn-primary hide" onclick="getAddStock()"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square align-middle mr-1"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg> Add</button>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-12 col-xl-12">
+												<div class="card">
+													<div class="card-header">
+														
+													</div>
+													<table class="table table-striped">
+														<thead>
+															<tr>
+																<th style="text-align: center;">Quantity</th>
+																<th style="text-align: center;">Current stock</th>
+																<th>Mfg date</th>
+																<th>Expiry date</th>
+																<th>Batch No</th>
+																<th style="text-align: right;">MRP</th>
+																<th style="text-align: right;">Discount</th>
+																<th style="text-align: right;">Price</th>
+																<th>Actions</th>
+															</tr>
+														</thead>
+														<tbody id="lst_stock">
+															<!-- stock items will be displayed here -->
+														</tbody>
+														<tfoot id="stock_footer">
+															<td colspan="9" class="center-align" style="font-size: 15px;">No items found</td>
+														</tfoot>
+													</table>
+												</div>
+											</div>
+										</div>
+										
+										<button onclick="updateStock()" class="btn btn-primary hide" id="txt_ProductSave">Save</button>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<!-- modal for add stock -->
+				<div class="modal fade" id="modal_addStock" tabindex="-1" role="dialog" aria-hidden="true">
+					<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Add stock</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body m-3">
+								<div class="row">
+									<div class="mb-3 col-md-4">
+										<label class="form-label" for="inputEmail4">Mfg Date</label>
+										<input readonly="readonly" onchange="hideError('#lbl_Error_MfgDate')" autocomplete="off" type="text" class="form-control" id="txt_ProductMfgDate" placeholder="Mfg Date">
+										<p id="lbl_Error_MfgDate" class="error hide">*Please select mfg date</p>
+									</div>
+									<div class="mb-3 col-md-4">
+										<label class="form-label" for="inputEmail4">Expiry Date</label>
+										<input readonly="readonly" onchange="hideError('#lbl_Error_ExpDate')" autocomplete="off" type="text" class="form-control" id="txt_ProductExpiryDate" placeholder="Expiry Date">
+										<p id="lbl_Error_ExpDate" class="error hide">*Please select expiry date</p>
+									</div>
+									<div class="mb-3 col-md-4">
+										<label class="form-label" for="inputEmail4">Batch No</label>
+										<input  autocomplete="off" onkeyup="hideError('#lbl_Error_BatchNo')" type="text" class="form-control" id="txt_ProductBatchNo" placeholder="Batch No">
+										<p id="lbl_Error_BatchNo" class="error hide">*Please enter batch no</p>
+									</div>
+								</div>
+								<div class="row">
+									<div class="mb-3 col-md-3">
+										<label class="form-label" for="inputEmail4">Buying price(Per Unit)</label>
+										<input  autocomplete="off"  onkeydown="hideError('#lbl_Error_BuyingPrice')" onkeyup="priceCalculation()" type="text" class="form-control" id="txt_ProductBuyingPrice" placeholder="0.00">
+										<p id="lbl_Error_BuyingPrice" class="error hide">*Please enter valid price</p>
+									</div>
+									<div class="mb-3 col-md-2">
+										<label class="form-label" for="inputEmail4">MRP</label>
+										<input  autocomplete="off" onkeydown="hideError('#lbl_Error_Mrp')" onkeyup="priceCalculation()" type="text" class="form-control" id="txt_ProductMrp" placeholder="0.00">
+										<p id="lbl_Error_Mrp" class="error hide">*Please enter valid price</p>
+									</div>
+									<div class="mb-3 col-md-2">
+										<label class="form-label" for="inputEmail4">Discount</label>
+										<input autocomplete="off" onkeyup="priceCalculation()" type="text" class="form-control" id="txt_ProductDiscount" placeholder="0.00">
+									</div>
+									<div class="mb-3 col-md-2">
+										<label class="form-label" for="inputEmail4">Price</label>
+										<input type="text" class="form-control" id="txt_ProductPrice" placeholder="0.00" disabled>
+									</div>
+									<div class="mb-3 col-md-2">
+										<label class="form-label" for="inputEmail4">Profit</label>
+										<input type="text" class="form-control" id="txt_ProductProfit" placeholder="0.00" disabled>
+									</div>
+								</div>
+								<div class="row">
+									<div class="mb-3 col-md-2">
+										<label class="form-label" for="inputEmail4">Quantity</label>
+										<input  autocomplete="off" onkeyup="hideError('#lbl_Error_Quantity')" type="text" class="form-control" id="txt_ProductQuantity" placeholder="0">
+										<p id="lbl_Error_Quantity" class="error hide">*Please enter valid quantity</p>
+									</div>
+									<div class="mb-3 col-md-3">
+										<label class="form-label" for="inputEmail4">Minimum quantity required</label>
+										<input  autocomplete="off" onkeyup="hideError('#lbl_Error_MinimumQuantity')" type="text" class="form-control" id="txt_ProductMinQty" placeholder="0">
+										<p id="lbl_Error_MinimumQuantity" class="error hide">*Please enter valid quantity</p>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-primary" id="btn_addStock" onclick = addStock()>Save changes</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- modal for edit stock -->
+				<div class="modal fade" id="modal_editStock" tabindex="-1" role="dialog" aria-hidden="true">
+					<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Add stock</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body m-3">
+								<div class="row">
+									<div class="mb-3 col-md-4">
+										<label class="form-label" for="inputEmail4">Mfg Date</label>
+										<input readonly="readonly" onchange="hideError('#lbl_Eror_MfgDate')" autocomplete="off" type="text" class="form-control" id="txt_ProducteditMfgDate" placeholder="Mfg Date">
+										<p id="lbl_Eror_MfgDate" class="error hide">*Please select mfg date</p>
+									</div>
+									<div class="mb-3 col-md-4">
+										<label class="form-label" for="inputEmail4">Expiry Date</label>
+										<input readonly="readonly" onchange="hideError('#lbl_Eror_ExpDate')" autocomplete="off" type="text" class="form-control" id="txt_ProducteditExpiryDate" placeholder="Expiry Date">
+										<p id="lbl_Eror_ExpDate" class="error hide">*Please select expiry date</p>
+									</div>
+									<div class="mb-3 col-md-4">
+										<label class="form-label" for="inputEmail4">Batch No</label>
+										<input  autocomplete="off" type="text" onkeyup="hideError('#lbl_Eror_BatchNo')" class="form-control" id="txt_ProducteditBatchNo" placeholder="Batch No">
+										<p id="lbl_Eror_BatchNo" class="error hide">*Please enter batch no</p>
+									</div>
+								</div>
+								<div class="row">
+									<div class="mb-3 col-md-3">
+										<label class="form-label" for="inputEmail4">Buying price(Per Unit)</label>
+										<input  autocomplete="off" onkeydown="hideError('#lbl_Eror_BuyingPrice')" onkeyup="productEditpriceCalculation()" type="text" class="form-control" id="txt_ProducteditBuyingPrice" placeholder="0.00">
+										<p id="lbl_Eror_BuyingPrice" class="error hide">*Please enter valid price</p>
+									</div>
+									<div class="mb-3 col-md-2">
+										<label class="form-label" for="inputEmail4">MRP</label>
+										<input  autocomplete="off" onkeydown="hideError('#lbl_Eror_Mrp')" onkeyup="productEditpriceCalculation()" type="text" class="form-control" id="txt_ProducteditMrp" placeholder="0.00">
+										<p id="lbl_Eror_Mrp" class="error hide">*Please enter valid price</p>
+									</div>
+									<div class="mb-3 col-md-2">
+										<label class="form-label" for="inputEmail4">Discount</label>
+										<input  autocomplete="off" onkeyup="productEditpriceCalculation()" type="text" class="form-control" id="txt_ProducteditDiscount" placeholder="0.00">
+									</div>
+									<div class="mb-3 col-md-2">
+										<label class="form-label" for="inputEmail4">Price</label>
+										<input  autocomplete="off" type="text" class="form-control" id="txt_ProducteditPrice" placeholder="0.00" disabled>
+									</div>
+									<div class="mb-3 col-md-2">
+										<label class="form-label" for="inputEmail4">Profit</label>
+										<input type="text" class="form-control" id="txt_ProducteditProfit" placeholder="0.00" disabled>
+									</div>
+								</div>
+								<div class="row">
+									<div class="mb-3 col-md-2">
+										<label class="form-label" for="inputEmail4">Quantity</label>
+										<input  autocomplete="off" type="text" onkeyup="hideError('#lbl_Eror_Quantity1')" class="form-control" id="txt_ProducteditQuantity" placeholder="0">
+										<p id="lbl_Eror_Quantity" class="error hide">*Please enter valid quantity</p>
+									</div>
+									<div class="mb-3 col-md-3">
+										<label class="form-label" for="inputEmail4">Minimum quantity required</label>
+										<input  autocomplete="off" type="text" onkeyup="hideError('#lbl_Eror_MinimumQuantity')" class="form-control" id="txt_ProducteditMinQty" placeholder="0">
+										<p id="lbl_Eror_MinimumQuantity" class="error hide">*Please enter valid quantity</p>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-primary hide" id="btn_editStockList" >Save changes</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+
+			<footer class="footer">
+				<div class="container-fluid">
+					<div class="row text-muted">
+						<div class="col-6 text-left">
+							<p class="mb-0">
+								<a href="" class="text-muted"><strong>iSMart</strong></a> &copy;
+							</p>
+						</div>
+						<div class="col-6 text-right">
+							
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</div>
+
+	<script src="js/app.js"></script>
+
+</body>
+
+</html>
